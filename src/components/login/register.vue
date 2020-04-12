@@ -4,15 +4,15 @@
       <div class="login-content">
         <div class="login-title">管理系统</div>
         <div class="login-name login-input">
-          <input type="text" name="username" v-model="login.username" autocomplete="off"/>
-          <span class="placeholder" :class="{fixed: login.username != '' && login.username != null}">用户名</span>
+          <input type="text" name="username" v-model="register.username" autocomplete="off"/>
+          <span class="placeholder" :class="{fixed: register.username != '' && register.username != null}">用户名</span>
         </div>
         <div class="login-password login-input">
-          <input type="password" name="password" v-model="login.password" @keyup.enter="submit" autocomplete="off"/>
-          <span class="placeholder" :class="{fixed: login.password != '' && login.password != null}">密码</span>
+          <input type="password" name="password" v-model="register.password" @keyup.enter="submit" autocomplete="off"/>
+          <span class="placeholder" :class="{fixed: register.password != '' && register.password != null}">密码</span>
         </div>
         <div class="buttonDiv">
-          <Button :loading="loading" block color="primary" size="l" @click="submit">登录</Button>
+          <Button :loading="loading" block color="primary" size="l" @click="submit">注册</Button>
         </div>
       </div>
       <p class="copyright"> Copyright © 2019 vvpvvp - <a href="https://www.heyui.top/">heyui.top</a></p>
@@ -21,12 +21,12 @@
 </template>
 <script>
 
-import Login from 'model/login/Login';
+import Register from 'model/login/Register';
 
 export default {
   data() {
     return {
-      login: Login.parse({}),
+      register: Register.parse({}),
       loading: false
     };
   },
@@ -35,11 +35,12 @@ export default {
   methods: {
     submit() {
       this.loading = true;
-      R.Login.login(Login.dispose(this.login)).then(resp => {
+      R.Login.register(Register.dispose(this.register)).then(resp => {
         if (resp.ok) {
-          let msg = resp.body;
-          Utils.saveLocal('token', msg.value);
-          window.location = '/';
+          console.info(resp.msg);
+          this.$Message(resp.msg);
+          // Utils.saveLocal('token', msg.value);
+          // window.location = '/';
         }
         this.loading = false;
       });

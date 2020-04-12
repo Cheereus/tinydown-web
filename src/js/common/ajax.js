@@ -5,7 +5,7 @@ import Utils from './utils';
 const DefaultParam = { repeatable: false };
 
 let ajax = {
-  PREFIX: '/api',
+  PREFIX: '/seller',
   Author: Utils.getAuthor() || 'heyui',
   requestingApi: new Set(),
   extractUrl: function (url) {
@@ -100,11 +100,11 @@ let ajax = {
       return axios.request(params).then((response) => {
         that.deleteRequest(params.url);
         let data = response.data;
-        let status = response.status;
+        let status = data.result;
         // 如果后端统一封装返回，即所有的请求都是200, 错误码由返回结果提供，则使用以下代码获取状态
-        // if (status == 200) {
-        //   status = data.status;
-        // }
+        if (status == 200) {
+
+        }
         if (status != 200) {
           if (status == 401) {
             window.top.location = '/login';
@@ -118,7 +118,8 @@ let ajax = {
             HeyUI.$Message.error(data._msg || '请求异常');
           }
         }
-        data.ok = data.status == 200;
+        data.ok = status == 200;
+        console.info(data)
         resolve(data);
       }).catch(() => {
         that.deleteRequest(params.url);

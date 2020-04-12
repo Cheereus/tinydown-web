@@ -29,9 +29,9 @@ module.exports = {
     devServer: {
       proxy: {
         // 此处应该配置为开发服务器的后台地址
-        // '/api': {
-        //   target: 'http://xxx.xx.xx'
-        // }
+        '/seller': {
+          target: 'http://127.0.0.1:8000'
+        }
       },
       historyApiFallback: true
     },

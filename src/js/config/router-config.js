@@ -12,6 +12,10 @@ const initRouter = () => {
       path: '/login',
       name: 'Login',
       component: (resolve) => require(['components/login/index'], resolve)
+    },{
+      path: '/register',
+      name: 'Register',
+      component: (resolve) => require(['components/login/register'], resolve)
     }, {
       path: '/',
       component: (resolve) => require(['components/app/app-frame'], resolve),

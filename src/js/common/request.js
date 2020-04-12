@@ -26,6 +26,9 @@ const Request = {
     },
     logout(param) {
       return Ajax.post('/logout', param);
+    },
+    register(param) {
+      return Ajax.postJson('/register', param);
     }
   },
   Management: {
