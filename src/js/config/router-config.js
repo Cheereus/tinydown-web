@@ -8,6 +8,7 @@ Vue.use(VueRouter);
 const initRouter = () => {
   const routerParam = {
     mode: 'history',
+    base: '/web/',
     routes: [{
       path: '/login',
       name: 'Login',
@@ -21,9 +22,10 @@ const initRouter = () => {
       component: (resolve) => require(['components/app/app-frame'], resolve),
       children: [{
         path: '',
-        name: 'Home',
-        component: (resolve) => require(['components/home/index'], resolve),
-        meta: { title: '首页', icon: 'icon-monitor' }
+        redirect: '/register',
+        // name: 'Home',
+        // component: (resolve) => require(['components/home/index'], resolve),
+        // meta: { title: '首页', icon: 'icon-monitor' }
       }, {
         path: '/system-error',
         name: 'SystemError',

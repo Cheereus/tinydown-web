@@ -6,7 +6,7 @@ module.exports = {
   stat: false,
   webpack: {
     console: true,
-    publicPath: '/',
+    publicPath: '/web/',
     output: {
       './index.html': {
         entry: './src/app'
